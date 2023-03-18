@@ -38,8 +38,19 @@ const languageTotals = repos =>
       {}
     )
 
-const favoriteLanguage = repos =>
-  Object.entries(languageTotals(repos)).sort(([, a], [, b]) => b - a)[0][0]
+// const favoriteLanguage = repos =>
+//   Object.entries(languageTotals(repos)).sort(([, a], [, b]) => b - a)[0][0]
+
+const favoriteLanguage = (repos) => {
+  if (repos.length > 0) {
+    return Object.entries(languageTotals(repos)).sort(
+      ([, a], [, b]) => b - a
+    )[0][0];
+  } else {
+    return "";
+  }
+};
+
 
 const totalStars = repos =>
   repos.reduce((total, repo) => total + repo['stargazers_count'], 0)
